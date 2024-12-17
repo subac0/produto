@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Lista de Produtos{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">Lista de Produtos</h2>
+
+    <ul class="list-group">
+        {% for produto in produtos %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    {% if produto.imagem %}
+                        <img src="{{ produto.imagem.url }}" alt="Imagem do produto" style="width: 100px; height: 100px; margin-right: 15px; object-fit: cover;">
+                    {% endif %}
+                    <div>
+                        <strong>{{ produto.nome }}</strong><br>
+                        {{ produto.quantidade }} unidades - R$ {{ produto.preco }}
+                    </div>
+                </div>
+                <div>
+                    <a href="{% url 'atualizar_produto' produto.pk %}" class="btn btn-sm btn-warning">Editar</a>
+                    <a href="{% url 'excluir_produto' produto.pk %}" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

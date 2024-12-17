@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Controle de Estoque{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <header class="bg-primary text-white p-3">
+        <div class="container d-flex align-items-center ">
+            <h1 style="margin-right: 20px;">Controle de Estoque</h1>
+            <nav>
+                <a href="{% url 'listar_produtos' %}" class="text-white"  style="margin-right: 10px;">Listar Produtos</a>
+                <a href="{% url 'adicionar_produto' %}" class="text-white">Adicionar Produto</a>
+                
+            </nav>
+            <nav style="margin-left: auto;">
+                <h3 >Olá, {{ user.username }}</h3>
+                <a href="{% url 'logout' %}" class="text-white">Logout</a>
+            </nav>
+            
+        </div>
+    </header>
+
+    <main class="container mt-4 flex-grow-1">
+        {% block content %}
+
+        {% endblock %}
+    </main>
+
+    <footer class="bg-light text-center p-3 mt-4" style="min-height: 50px;">
+    
+        <p>&copy; 2024 Fimose.Inc </p>
+    </footer>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>
